@@ -1,0 +1,38 @@
+MAIN_APP = <NAME OF SOURCE FILE>
+MAIN_HEX_PATH = "${MAIN_APP}.hex"
+
+CC = avr-gcc
+OBJCOPY = avr-objcopy.exe
+AVRDUDE := avrdude
+
+CFLAGS = -Wall -pedantic -std=c99 -g -Os -o
+LFLAGS = -Wall -pedantic -std=c99 -Os -mmcu=atmega328 -o
+HFLAGS = -j .text -j .data -O ihex
+
+DUDEFLAGS = -c
+DUDEFLAGS += arduino
+DUDEFLAGS += -p
+DUDEFLAGS += m8
+DUDEFLAGS += -P
+DUDEFLAGS += com7
+DUDEFLAGS += -b
+DUDEFLAGS += 19200
+DUDEFLAGS += -U flash:w:$(MAIN_HEX_PATH):i
+
+SRC = $(MAIN_APP).c
+INCLUDE = -I.
+
+Burn : Build
+	$(AVRDUDE) $(DUDEFLAGS)
+
+Build : $(MAIN_APP).elf
+	$(OBJCOPY) $(HFLAGS) $< $(MAIN_APP).hex
+
+$(MAIN_APP).elf: $(MAIN_APP).o
+	$(CC) $(SRC) $(INCLUDE) $(LFLAGS) $@
+
+$(MAIN_APP).o: $(SRC)
+	$(CC) $^ $(INCLUDE) $(CFLAGS) $@
+
+clean:
+	rm *.elf *.o *.hex

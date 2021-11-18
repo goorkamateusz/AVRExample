@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "D:\\biblioteki_cpp\\WinAVR\\avr\\include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "D:\\biblioteki_cpp\\WinAVR\\avr\\bin\\gcc.exe",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
