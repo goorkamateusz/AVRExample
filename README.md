@@ -1,10 +1,3 @@
-<style>
-    img {
-        max-width: 50%;
-        border-radius: 5px;
-    }
-</style>
-
 # AVR Basics
 
 Część z materiału realizowanego w ramach kursu "Podstawy Techniki Mikroprocesorowej II".
