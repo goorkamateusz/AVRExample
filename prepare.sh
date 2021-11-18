@@ -5,4 +5,5 @@ test -f "MakefileTemplate" || echo "Brak szablonu" || return 2
 
 sed "s/{NAME OF SOURCE FILE}/$1/g" "MakefileTemplate" > "Makefile"
 
+mkdir -p obj
 make build

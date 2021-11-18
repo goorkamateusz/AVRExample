@@ -1,2 +1,6 @@
 /_local/
 Makefile
+
+*.elf
+*.o
+*.hex

@@ -25,14 +25,14 @@ INCLUDE = -I.
 Burn : Build
 	$(AVRDUDE) $(DUDEFLAGS)
 
-Build : $(MAIN_APP).elf
-	$(OBJCOPY) $(HFLAGS) $< $(MAIN_APP).hex
+Build : obj/$(MAIN_APP).elf
+	$(OBJCOPY) $(HFLAGS) $< obj/$(MAIN_APP).hex
 
-$(MAIN_APP).elf: $(MAIN_APP).o
+obj/$(MAIN_APP).elf: obj/$(MAIN_APP).o
 	$(CC) $(SRC) $(INCLUDE) $(LFLAGS) $@
 
-$(MAIN_APP).o: $(SRC)
+obj/$(MAIN_APP).o: $(SRC)
 	$(CC) $^ $(INCLUDE) $(CFLAGS) $@
 
 clean:
-	rm *.elf *.o *.hex
+	rm obj/*.elf obj/*.o obj/*.hex
