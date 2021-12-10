@@ -15,8 +15,8 @@
 #include "ADC_lib.h"
 #include "LCD_lib.h"
 
-const int setpoint = 600;
-const int half_hysteresis = 100;
+const int SETPOINT = 600;
+const int HALF_HYSTERESIS = 100;
 volatile int value = -1;
 
 Timer0_Init() {
@@ -29,15 +29,15 @@ Timer0_Init() {
 
 ISR(TIMER0_COMPA_vect) {
     value = ADC_Read_Ch(5);
-    int devation = value - setpoint;
-    if (devation < -1 * half_hysteresis) PORTC |= 0b00000001;
-    else if (devation > half_hysteresis) PORTC &= 0b11111110;
+    int devation = value - SETPOINT;
+    if (devation < -1 * HALF_HYSTERESIS) PORTC |= 0b00000001;
+    else if (devation > HALF_HYSTERESIS) PORTC &= 0b11111110;
 
     PORTB ^= _BV(DDB5);
 }
 
 int main() {
-    DDRC |= 0b1;   // Ustawia C0 - wyjscie, C5 - wejscie
+    DDRC |= 0b1; // Ustawia C0 - wyjscie, C5 - wejscie
     DDRB |= _BV(DDB5);
 
     Timer0_Init();

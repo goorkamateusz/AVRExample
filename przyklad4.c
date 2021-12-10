@@ -17,7 +17,7 @@ volatile int devation;
 const int sum_max = 10000;
 
 float scale(int val) {
-    return ((float) val) / 1024;
+    return ((float)val) / 1024;
 }
 
 int sum(int val) {
@@ -29,7 +29,7 @@ int sum(int val) {
 
 int regulator(int value) {
     int diff = setpoint - value;
-    int out = (int) (Kd*diff + sum(diff)*Ti);
+    int out = (int)(Kd * diff + sum(diff) * Ti);
     return out < 0xff ? (out < 0 ? 0 : out) : 0xff;
 }
 
